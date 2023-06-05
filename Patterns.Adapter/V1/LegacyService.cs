@@ -2,7 +2,7 @@
 
 namespace Patterns.Adapter.V1
 {
-    // Exactly that one service with 5k line of legacy code =)
+    // Exactly that one service with 5k lines of legacy code =)
     internal class LegacyService
     {
         // Of course all methods are static =)

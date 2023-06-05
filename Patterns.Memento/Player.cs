@@ -1,11 +1,9 @@
-﻿using static Patterns.Memento.PlayerSnapshot;
-
-namespace Patterns.Memento
+﻿namespace Patterns.Memento
 {
     internal class Player
     {
         private int _health = 50;
-        private Gun _gun = new ();
+        private Gun _gun = new();
 
         public void Heal()
         {
