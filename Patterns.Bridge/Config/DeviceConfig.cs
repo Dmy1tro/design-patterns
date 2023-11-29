@@ -1,14 +1,13 @@
-﻿namespace Patterns.Bridge.Config
+﻿namespace Patterns.Bridge.Config;
+
+internal class AudioConfig : IConfig
 {
-    internal class AudioConfig : IConfig
-    {
-    }
+}
 
-    internal class MouseConfig : IConfig
-    {
-    }
+internal class MouseConfig : IConfig
+{
+}
 
-    internal class KeyboardConfig : IConfig
-    {
-    }
+internal class KeyboardConfig : IConfig
+{
 }

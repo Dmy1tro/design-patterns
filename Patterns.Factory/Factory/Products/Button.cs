@@ -1,7 +1,6 @@
-﻿namespace Patterns.Factory.Factory.Products
+﻿namespace Patterns.Factory.Factory.Products;
+
+internal class Button
 {
-    internal class Button
-    {
-        public string Type { get; set; }
-    }
+    public string Type { get; set; }
 }

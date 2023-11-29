@@ -1,11 +1,10 @@
 ﻿using Patterns.Factory.AbstractFactory.Products;
 
-namespace Patterns.Factory.AbstractFactory.Factories
-{
-    internal interface IUIFactory
-    {
-        IButton CreateButton();
+namespace Patterns.Factory.AbstractFactory.Factories;
 
-        IInput CreateInput();
-    }
+internal interface IUIFactory
+{
+    IButton CreateButton();
+
+    IInput CreateInput();
 }

@@ -1,11 +1,10 @@
-﻿namespace Patterns.Factory.AbstractFactory.Products
+﻿namespace Patterns.Factory.AbstractFactory.Products;
+
+internal interface IInput
 {
-    internal interface IInput
-    {
-        void OnChange(Action<string> action);
+    void OnChange(Action<string> action);
 
-        void SetPlaceholder(string placeholder);
+    void SetPlaceholder(string placeholder);
 
-        void SetValue(string value);
-    }
+    void SetValue(string value);
 }

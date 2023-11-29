@@ -1,17 +1,16 @@
-﻿namespace Patterns.Proxy
+﻿namespace Patterns.Proxy;
+
+internal class Example
 {
-    internal class Example
+    public static void Run()
     {
-        public static void Run()
-        {
-            IDbAccessor dbAccessor = new DbAccessor();
-            IDbAccessor dbCacheWrapper = new DbCacheWrapper(dbAccessor);
+        IDbAccessor dbAccessor = new DbAccessor();
+        IDbAccessor dbCacheWrapper = new DbCacheWrapper(dbAccessor);
 
-            // First call fetch value from db.
-            dbCacheWrapper.GetValue("qwerty");
+        // First call fetch value from db.
+        dbCacheWrapper.GetValue("qwerty");
 
-            // Second call fetch value from cache.
-            dbCacheWrapper.GetValue("qwerty");
-        }
+        // Second call fetch value from cache.
+        dbCacheWrapper.GetValue("qwerty");
     }
 }

@@ -1,6 +1,5 @@
-﻿namespace Patterns.Bridge.Device
+﻿namespace Patterns.Bridge.Device;
+
+internal class Laptop : IDevice
 {
-    internal class Laptop : IDevice
-    {
-    }
 }

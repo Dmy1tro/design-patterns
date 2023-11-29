@@ -1,29 +1,28 @@
-﻿namespace Patterns.Proxy
+﻿namespace Patterns.Proxy;
+
+internal class DbCacheWrapper : IDbAccessor
 {
-    internal class DbCacheWrapper : IDbAccessor
+    private readonly IDbAccessor _dbAccessor;
+    private readonly Dictionary<string, string> _inMemStorage;
+
+    // Wrapping actual dbAccessor
+    public DbCacheWrapper(IDbAccessor dbAccessor)
     {
-        private readonly IDbAccessor _dbAccessor;
-        private readonly Dictionary<string, string> _inMemStorage;
+        _dbAccessor = dbAccessor;
+        _inMemStorage = new();
+    }
 
-        // Wrapping actual dbAccessor
-        public DbCacheWrapper(IDbAccessor dbAccessor)
+    public string GetValue(string key)
+    {
+        if (_inMemStorage.ContainsKey(key))
         {
-            _dbAccessor = dbAccessor;
-            _inMemStorage = new();
+            return _inMemStorage[key];
         }
 
-        public string GetValue(string key)
-        {
-            if (_inMemStorage.ContainsKey(key))
-            {
-                return _inMemStorage[key];
-            }
+        var value = _dbAccessor.GetValue(key);
 
-            var value = _dbAccessor.GetValue(key);
+        _inMemStorage[key] = value;
 
-            _inMemStorage[key] = value;
-
-            return value;
-        }
+        return value;
     }
 }

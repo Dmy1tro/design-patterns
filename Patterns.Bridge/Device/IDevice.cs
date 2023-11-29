@@ -4,9 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Patterns.Bridge.Device
+namespace Patterns.Bridge.Device;
+
+internal interface IDevice
 {
-    internal interface IDevice
-    {
-    }
 }

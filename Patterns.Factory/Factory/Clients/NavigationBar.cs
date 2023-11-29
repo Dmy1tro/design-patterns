@@ -1,15 +1,14 @@
 ﻿using Patterns.Factory.Factory.Factories;
 using Patterns.Factory.Factory.Products;
 
-namespace Patterns.Factory.Factory.Clients
-{
-    internal class NavigationBar
-    {
-        private readonly Button _button;
+namespace Patterns.Factory.Factory.Clients;
 
-        public NavigationBar()
-        {
-            _button = ButtonFactory.CreateButton();
-        }
+internal class NavigationBar
+{
+    private readonly Button _button;
+
+    public NavigationBar()
+    {
+        _button = ButtonFactory.CreateButton();
     }
 }

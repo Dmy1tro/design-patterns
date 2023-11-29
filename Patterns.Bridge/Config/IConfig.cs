@@ -4,9 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Patterns.Bridge.Config
+namespace Patterns.Bridge.Config;
+
+internal interface IConfig
 {
-    internal interface IConfig
-    {
-    }
 }

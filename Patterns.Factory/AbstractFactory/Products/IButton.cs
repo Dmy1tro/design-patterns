@@ -1,9 +1,8 @@
-﻿namespace Patterns.Factory.AbstractFactory.Products
-{
-    internal interface IButton
-    {
-        void OnClick(Action action);
+﻿namespace Patterns.Factory.AbstractFactory.Products;
 
-        void SetText(string text);
-    }
+internal interface IButton
+{
+    void OnClick(Action action);
+
+    void SetText(string text);
 }

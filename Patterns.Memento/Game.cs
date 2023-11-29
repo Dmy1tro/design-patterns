@@ -1,23 +1,22 @@
-﻿namespace Patterns.Memento
+﻿namespace Patterns.Memento;
+
+internal class Game
 {
-    internal class Game
+    void Play()
     {
-        void Play()
-        {
-            var saves = new LinkedList<PlayerSnapshot>();
-            var player = new Player();
+        var saves = new LinkedList<PlayerSnapshot>();
+        var player = new Player();
 
-            player.Heal();
-            player.Shoot();
+        player.Heal();
+        player.Shoot();
 
-            var snapshot = player.CreateSnapshot();
-            saves.AddLast(snapshot);
+        var snapshot = player.CreateSnapshot();
+        saves.AddLast(snapshot);
 
-            player.Heal();
-            player.Shoot();
+        player.Heal();
+        player.Shoot();
 
-            var lastSnapshot = saves.Last.Value;
-            player = Player.FromSnapshot(lastSnapshot);
-        }
+        var lastSnapshot = saves.Last.Value;
+        player = Player.FromSnapshot(lastSnapshot);
     }
 }

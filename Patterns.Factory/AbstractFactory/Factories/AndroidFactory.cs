@@ -1,50 +1,49 @@
 ﻿using Patterns.Factory.AbstractFactory.Products;
 
-namespace Patterns.Factory.AbstractFactory.Factories
+namespace Patterns.Factory.AbstractFactory.Factories;
+
+internal class AndroidFactory : IUIFactory
 {
-    internal class AndroidFactory : IUIFactory
+    public IButton CreateButton()
     {
-        public IButton CreateButton()
+        return new AndroidButton();
+    }
+
+    public IInput CreateInput()
+    {
+        return new AndroidInput();
+    }
+
+    // Group of UI elements specific for android platform
+    // Factory makes sure that all created objects are compatible together
+    private class AndroidButton : IButton
+    {
+        public void OnClick(Action action)
         {
-            return new AndroidButton();
+            throw new NotImplementedException();
         }
 
-        public IInput CreateInput()
+        public void SetText(string text)
         {
-            return new AndroidInput();
+            throw new NotImplementedException();
+        }
+    }
+
+    private class AndroidInput : IInput
+    {
+        public void OnChange(Action<string> action)
+        {
+            throw new NotImplementedException();
         }
 
-        // Group of UI elements specific for android platform
-        // Factory makes sure that all created objects are compatible together
-        private class AndroidButton : IButton
+        public void SetPlaceholder(string placeholder)
         {
-            public void OnClick(Action action)
-            {
-                throw new NotImplementedException();
-            }
-
-            public void SetText(string text)
-            {
-                throw new NotImplementedException();
-            }
+            throw new NotImplementedException();
         }
 
-        private class AndroidInput : IInput
+        public void SetValue(string value)
         {
-            public void OnChange(Action<string> action)
-            {
-                throw new NotImplementedException();
-            }
-
-            public void SetPlaceholder(string placeholder)
-            {
-                throw new NotImplementedException();
-            }
-
-            public void SetValue(string value)
-            {
-                throw new NotImplementedException();
-            }
+            throw new NotImplementedException();
         }
     }
 }

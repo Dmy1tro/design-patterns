@@ -1,7 +1,6 @@
-﻿namespace Patterns.Proxy
+﻿namespace Patterns.Proxy;
+
+internal interface IDbAccessor
 {
-    internal interface IDbAccessor
-    {
-        string GetValue(string key);
-    }
+    string GetValue(string key);
 }

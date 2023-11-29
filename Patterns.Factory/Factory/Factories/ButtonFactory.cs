@@ -1,10 +1,9 @@
 ﻿using Patterns.Factory.Factory.Products;
 
-namespace Patterns.Factory.Factory.Factories
+namespace Patterns.Factory.Factory.Factories;
+
+internal class ButtonFactory
 {
-    internal class ButtonFactory
-    {
-        // Simple factory, common scenario.
-        public static Button CreateButton() => new() { Type = "Primary button" };
-    }
+    // Simple factory, common scenario.
+    public static Button CreateButton() => new() { Type = "Primary button" };
 }

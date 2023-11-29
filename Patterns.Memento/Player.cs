@@ -1,66 +1,65 @@
-﻿namespace Patterns.Memento
-{
-    internal class Player
-    {
-        private int _health = 50;
-        private Gun _gun = new();
+﻿namespace Patterns.Memento;
 
-        public void Heal()
+internal class Player
+{
+    private int _health = 50;
+    private Gun _gun = new();
+
+    public void Heal()
+    {
+        _health++;
+    }
+
+    public void Shoot()
+    {
+        _gun.Shoot();
+    }
+
+    public PlayerSnapshot CreateSnapshot()
+    {
+        return new PlayerSnapshot
         {
-            _health++;
-        }
+            Health = _health,
+            Gun = _gun.CreateSnapshot()
+        };
+    }
+
+    public static Player FromSnapshot(PlayerSnapshot snapshot)
+    {
+        var player = new Player
+        {
+            _health = snapshot.Health,
+            _gun = Gun.FromSnapshot(snapshot.Gun)
+        };
+
+        return player;
+    }
+
+    internal class Gun
+    {
+        public int Amo { get; set; }
 
         public void Shoot()
         {
-            _gun.Shoot();
+            Amo--;
         }
 
-        public PlayerSnapshot CreateSnapshot()
+        public GunSnapshot CreateSnapshot()
         {
-            return new PlayerSnapshot
+            return new GunSnapshot
             {
-                Health = _health,
-                Gun = _gun.CreateSnapshot()
+                Amo = Amo
             };
         }
 
-        public static Player FromSnapshot(PlayerSnapshot snapshot)
+        public static Gun FromSnapshot(GunSnapshot snapshot)
         {
-            var player = new Player
+            var gun = new Gun
             {
-                _health = snapshot.Health,
-                _gun = Gun.FromSnapshot(snapshot.Gun)
+                Amo = snapshot.Amo
             };
 
-            return player;
-        }
-
-        internal class Gun
-        {
-            public int Amo { get; set; }
-
-            public void Shoot()
-            {
-                Amo--;
-            }
-
-            public GunSnapshot CreateSnapshot()
-            {
-                return new GunSnapshot
-                {
-                    Amo = Amo
-                };
-            }
-
-            public static Gun FromSnapshot(GunSnapshot snapshot)
-            {
-                var gun = new Gun
-                {
-                    Amo = snapshot.Amo
-                };
-
-                return gun;
-            }
+            return gun;
         }
     }
 }

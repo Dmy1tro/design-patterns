@@ -1,27 +1,26 @@
 ﻿using Patterns.Decorator.Decorators;
 
-namespace Patterns.Decorator.Handlers
+namespace Patterns.Decorator.Handlers;
+
+interface IHandler
 {
-    interface IHandler
+    int Handle();
+}
+
+internal class Handler : IHandler
+{
+    public int Handle()
     {
-        int Handle();
+        return 1;
     }
 
-    internal class Handler : IHandler
+    public void Example()
     {
-        public int Handle()
-        {
-            return 1;
-        }
+        var handler = new Handler();
 
-        public void Example()
-        {
-            var handler = new Handler();
+        var exceptionDecorator = new ExceptionHandlerDecorator(handler);
+        var loggerDecorator = new LoggerDecorator(exceptionDecorator);
 
-            var exceptionDecorator = new ExceptionHandlerDecorator(handler);
-            var loggerDecorator = new LoggerDecorator(exceptionDecorator);
-
-            exceptionDecorator.Handle();
-        }
+        exceptionDecorator.Handle();
     }
 }

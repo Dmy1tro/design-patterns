@@ -1,60 +1,59 @@
-﻿namespace Patterns.Builder
+﻿namespace Patterns.Builder;
+
+internal class ButtonBuilderV2
 {
-    internal class ButtonBuilderV2
+    // It could be an object that contains all aplied changes
+    private readonly List<Action<Button>> _actionsToApply = new();
+
+    // Entry point
+    public static ButtonBuilderV2 CreateBuilder()
     {
-        // It could be an object that contains all aplied changes
-        private readonly List<Action<Button>> _actionsToApply = new();
+        return new ButtonBuilderV2();
+    }
 
-        // Entry point
-        public static ButtonBuilderV2 CreateBuilder()
+    public ButtonBuilderV2 WithText(string text)
+    {
+        // Here can be validation or pre-processing of value before setting it to the object
+        _actionsToApply.Add(button =>
         {
-            return new ButtonBuilderV2();
-        }
+            button.Text = text;
+        });
 
-        public ButtonBuilderV2 WithText(string text)
+        return this;
+    }
+
+    public ButtonBuilderV2 WithColor(string color)
+    {
+        _actionsToApply.Add(button =>
         {
-            // Here can be validation or pre-processing of value before setting it to the object
-            _actionsToApply.Add(button =>
-            {
-                button.Text = text;
-            });
+            button.Color = color;
+        });
 
-            return this;
-        }
+        return this;
+    }
 
-        public ButtonBuilderV2 WithColor(string color)
-        {
-            _actionsToApply.Add(button =>
-            {
-                button.Color = color;
-            });
+    // In this version Builder and 'Build' method can be reused many times as 'Build' returns a new object each time
+    public Button Build()
+    {
+        var button = new Button();
 
-            return this;
-        }
+        _actionsToApply.ForEach(action => action.Invoke(button));
 
-        // In this version Builder and 'Build' method can be reused many times as 'Build' returns a new object each time
-        public Button Build()
-        {
-            var button = new Button();
+        return button;
+    }
 
-            _actionsToApply.ForEach(action => action.Invoke(button));
+    public void Example()
+    {
+        var sendButtonbuilder = ButtonBuilderV2
+            .CreateBuilder()
+            .WithText("Send");
 
-            return button;
-        }
+        var sendButton1 = sendButtonbuilder.Build();
+        var sendButton2 = sendButtonbuilder.Build();
 
-        public void Example()
-        {
-            var sendButtonbuilder = ButtonBuilderV2
-                .CreateBuilder()
-                .WithText("Send");
+        var redSendButtonBuilder = sendButtonbuilder.WithColor("red");
 
-            var sendButton1 = sendButtonbuilder.Build();
-            var sendButton2 = sendButtonbuilder.Build();
-
-            var redSendButtonBuilder = sendButtonbuilder.WithColor("red");
-
-            var redSendButton1 = redSendButtonBuilder.Build();
-            var redSendButton2 = redSendButtonBuilder.Build();
-        }
+        var redSendButton1 = redSendButtonBuilder.Build();
+        var redSendButton2 = redSendButtonBuilder.Build();
     }
 }

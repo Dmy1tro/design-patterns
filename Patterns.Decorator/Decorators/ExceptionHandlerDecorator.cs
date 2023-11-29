@@ -1,39 +1,38 @@
 ﻿using Patterns.Decorator.Handlers;
 
-namespace Patterns.Decorator.Decorators
+namespace Patterns.Decorator.Decorators;
+
+internal class ExceptionHandlerDecorator : IHandler
 {
-    internal class ExceptionHandlerDecorator : IHandler
+    private readonly IHandler _handler;
+
+    public ExceptionHandlerDecorator(IHandler handler)
     {
-        private readonly IHandler _handler;
+        _handler = handler;
+    }
 
-        public ExceptionHandlerDecorator(IHandler handler)
+    public int Handle()
+    {
+        try
         {
-            _handler = handler;
+            return _handler.Handle();
+        }
+        catch (ArgumentNullException ex)
+        {
+            // Handle different types of error
+        }
+        catch (IndexOutOfRangeException ex)
+        {
+
+        }
+        catch (Exception ex)
+        {
+
+        }
+        finally
+        {
         }
 
-        public int Handle()
-        {
-            try
-            {
-                return _handler.Handle();
-            }
-            catch (ArgumentNullException ex)
-            {
-                // Handle different types of error
-            }
-            catch (IndexOutOfRangeException ex)
-            {
-
-            }
-            catch (Exception ex)
-            {
-
-            }
-            finally
-            {
-            }
-
-            return -1;
-        }
+        return -1;
     }
 }
