@@ -9,3 +9,6 @@ Implemented patterns:
  - Factory
  - Memento
  - Prototype
+ - Proxy
+ - Bridge
+ - Strategy
